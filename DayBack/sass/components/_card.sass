@@ -1,0 +1,51 @@
+.default-card
+  display: flex
+  width: 100%
+
+  & > *
+    flex: 0 1 33.33333%
+    margin: 0 5%
+    height: 224px
+    background: #000
+    overflow: hidden
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.4)
+
+  & .member-img
+    display: block
+    width: 224px
+    height: 224px
+
+.member-item__container
+  position: relative
+  transition: transform 1s ease-out
+
+  &:hover
+    transform: translateY(-50%)
+    & .member-info
+      opacity: 1
+    & .member-img--overlay::after
+      background: #000
+
+  & .member-img--overlay
+    &::after
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 50%
+      content: ''
+      background: transparent
+      transition: background 1s ease-out
+
+  & .member-info
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 224px
+    opacity: 0
+    transition: opacity 1s ease-out
+    z-index: 10
+    & > *
+      color: #fff

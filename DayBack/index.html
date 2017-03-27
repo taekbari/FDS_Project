@@ -5,25 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Day Back - Introduce</title>
+  <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-  <header>
-    <h1><a href=""><img src="./images" alt="Logo"></a></h1>
-    <nav>
-      <h2>Global Navigation</h2>
-      <ul>
-        <li><a href="">About</a></li>
-        <li><a href="">Carousel 1</a></li>
-        <li><a href="">Toturial</a></li>
-        <li><a href="">Carousel 2</a></li>
-        <li><a href="">Member</a></li>
-      </ul>
-    </nav>
+  <header class="fixed-header">
+    <div class="fix-width">
+      <h1 class="logo-heading">
+        <a href="" class="logo-heading__link">
+          <img class="logo-img" src="./images/img-html5-logo.svg" alt="Logo">
+        </a>
+      </h1>
+      <nav class="gnb">
+        <h2 class="hidden">Global Navigation</h2>
+        <ul class="default-list row-list">
+          <li><a class="gnb__item" href="">About</a></li>
+          <li><a class="gnb__item" href="">Carousel 1</a></li>
+          <li><a class="gnb__item" href="">Toturial</a></li>
+          <li><a class="gnb__item" href="">Carousel 2</a></li>
+          <li><a class="gnb__item" href="">Member</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
   <main>
-    <div>
-      <video src="./video">
-        <source src="./video/video.mp4" type="video/mp4">
+    <div class="video-container">
+      <video autoplay poster="./video/pencil_down.jpg">
+        <source src="./video/pencil_down.mp4" type="video/mp4">
+        <source src="./video/pencil_down.webm" type="video/webm">
       </video>
     </div>
     <section>
@@ -66,29 +74,43 @@
     <section>
       <h2>Carousel Two</h2>
     </section>
-    <section>
-      <h2>Member</h2>
-      <figure>
-        <img src="./images" alt="Avatar 1">
-        <figcaption>
-          <h3>Avatar 1</h3>
-          <p>Front-End Developer</p>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="./images" alt="Avatar 2">
-        <figcaption>
-          <h3>Avatar 2</h3>
-          <p>Front-End Developer</p>
-        </figcaption>
-      </figure>
-      <figure>
-        <img src="./images" alt="Avatar 3">
-        <figcaption>
-          <h3>Avatar 3</h3>
-          <p>Front-End Developer</p>
-        </figcaption>
-      </figure>
+    <section class="fix-width">
+      <h2 class="hidden">Member</h2>
+      <div class="default-card">
+        <figure class="member-item">
+          <div class="member-item__container">
+            <div class="member-img--overlay">
+              <img class="member-img" src="./images/img-avatar.png" alt="Avatar 1">
+            </div>
+            <figcaption class="member-info">
+              <h3>Avatar 1</h3>
+              <p>Front-End Developer</p>
+            </figcaption>
+          </div>
+        </figure>
+        <figure class="member-item">
+          <div class="member-item__container">
+            <div class="member-img--overlay">
+              <img class="member-img" src="./images/img-avatar.png" alt="Avatar 2">
+            </div>
+            <figcaption class="member-info">
+              <h3>Avatar 2</h3>
+              <p>Front-End Developer</p>
+            </figcaption>
+          </div>
+        </figure>
+        <figure class="member-item">
+          <div class="member-item__container">
+            <div class="member-img--overlay">
+              <img class="member-img" src="./images/img-avatar.png" alt="Avatar 3">
+            </div>
+            <figcaption class="member-info">
+              <h3>Avatar 3</h3>
+              <p>Front-End Developer</p>
+            </figcaption>
+          </div>
+        </figure>
+      </div>
     </section>
   </main>
   <footer>
