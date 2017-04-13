@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="330px" height="277px" viewBox="0 0 330 277" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>gfx</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M0,7.99104492 C0,3.57771267 3.57964255,0 7.99383642,0 L322.006164,0 C326.421038,0 330,3.5767425 330,7.99104492 L330,205.809926 C330,210.223258 326.420357,213.800971 322.006164,213.800971 L7.99383642,213.800971 C3.57896247,213.800971 0,210.224228 0,205.809926 L0,7.99104492 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="330" height="213.800971" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M148.163265,138.431176 L266.036193,138.431176 L266.036193,235.006052 C266.036193,239.977372 262.515141,245.960254 258.167444,248.371555 L206.548921,277 L156.007101,248.439819 C151.67507,245.991874 148.163265,239.981615 148.163265,235.006052 L148.163265,138.431176 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="117.872927" height="138.568824" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="1-main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.0_ckeditor.com" transform="translate(-234.000000, -1591.000000)">
+            <g id="features1" transform="translate(82.000000, 1538.000000)">
+                <g id="gfx" transform="translate(152.000000, 53.000000)">
+                    <use id="Rectangle" stroke="#477DAA" mask="url(#mask-2)" stroke-width="8" fill="#FFFFFF" xlink:href="#path-1"></use>
+                    <rect id="Rectangle" fill="#BFE0FA" x="4" y="4" width="322" height="38" rx="3"></rect>
+                    <path d="M4.06122449,43.0291262 L327.281226,43.0291262" id="Line" stroke="#477DAA" stroke-width="2" stroke-linecap="square"></path>
+                    <ellipse id="Oval-3" fill="#477DAA" cx="25.5918367" cy="24.2038835" rx="5.3877551" ry="5.37864078"></ellipse>
+                    <ellipse id="Oval-3" fill="#477DAA" cx="45.7959184" cy="24.2038835" rx="5.3877551" ry="5.37864078"></ellipse>
+                    <ellipse id="Oval-3" fill="#477DAA" cx="66" cy="24.2038835" rx="5.3877551" ry="5.37864078"></ellipse>
+                    <use id="Rectangle-2" stroke="#477DAA" mask="url(#mask-4)" stroke-width="8" fill="#BEE0F9" xlink:href="#path-3"></use>
+                    <path d="M150.366498,166.737864 L261.916151,166.737864" id="Line" stroke="#477DAA" stroke-width="2" stroke-linecap="square"></path>
+                    <ellipse id="Oval" fill="#FFFFFF" cx="208.325626" cy="207.044875" rx="31.1546927" ry="31.1019892"></ellipse>
+                    <g id="Group-3" transform="translate(169.714286, 169.427184)" stroke-linecap="round" stroke="#6CBC88" stroke-width="5">
+                        <g id="Group-2" transform="translate(20.093478, 27.581794)">
+                            <path d="M0.873629498,12.3191414 L12.2643645,23.690607" id="Line"></path>
+                            <path d="M13.1044425,24.5292638 L35.1635873,0" id="Line"></path>
+                        </g>
+                    </g>
+                    <path d="M34.2291944,93.4538835 L297.787619,93.4538835" id="Line" stroke-opacity="0.160212862" stroke="#002D52" stroke-width="5" stroke-linecap="round"></path>
+                    <path d="M34.2291944,110.934466 L297.787619,110.934466" id="Line" stroke-opacity="0.160212862" stroke="#002D52" stroke-width="5" stroke-linecap="round"></path>
+                    <path d="M34.2291944,128.415049 L121.939338,128.415049" id="Line" stroke-opacity="0.160212862" stroke="#002D52" stroke-width="5" stroke-linecap="round"></path>
+                    <rect id="Rectangle-3" fill="#D6DDE3" x="32.3265306" y="60.5097087" width="53.877551" height="16.1359223" rx="3"></rect>
+                    <rect id="Rectangle-3" fill="#D6DDE3" x="91.5918367" y="60.5097087" width="210.122449" height="16.1359223" rx="3"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

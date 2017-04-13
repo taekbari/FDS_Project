@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Day Back - Introduce</title>
+  <link rel="stylesheet" href="./css/main.css">
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  <style>
+  .homepage-hero-module {
+      border-right: none;
+      border-left: none;
+      position: relative;
+  }
+  .no-video .video-container video,
+  .touch .video-container video {
+      display: none;
+  }
+  .no-video .video-container .poster,
+  .touch .video-container .poster {
+      display: block !important;
+  }
+  .video-container {
+      position: relative;
+      bottom: 0%;
+      left: 0%;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+  }
+  .video-container .poster img {
+      width: 100%;
+      bottom: 0;
+      position: absolute;
+  }
+  .video-container .filter {
+      z-index: 100;
+      position: absolute;
+      background: rgba(0, 0, 0, 0.4);
+      width: 100%;
+  }
+  .video-container video {
+      position: absolute;
+      z-index: 0;
+      bottom: 0;
+  }
+  .video-container video.fillWidth {
+      width: 100%;
+  }
+  </style>
+</head>
+<body>
+  <header class="fixed-header">
+    <div class="fix-width">
+      <h1 class="logo-heading">
+        <a href="" class="logo-heading__link">
+          <img class="logo-img" src="./images/img-html5-logo.svg" alt="Logo">
+        </a>
+      </h1>
+      <nav class="gnb">
+        <h2 class="hidden">Global Navigation</h2>
+        <ul class="default-list row-list">
+          <li><a class="gnb__item" href="">About</a></li>
+          <li><a class="gnb__item" href="">Carousel 1</a></li>
+          <li><a class="gnb__item" href="">Toturial</a></li>
+          <li><a class="gnb__item" href="">Carousel 2</a></li>
+          <li><a class="gnb__item" href="">Member</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="homepage-hero-module">
+      <div class="video-container">
+          <div class="filter"></div>
+          <video autoplay loop class="fillWidth">
+              <source src="./video/pencil_down.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+              <source src="./video/pencil_down.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+          </video>
+          <div class="poster hidden">
+              <img src="./video/pencil_down.jpg" alt="">
+          </div>
+      </div>
+    </div>
+    <!-- <div class="video-container">
+      <video autoplay poster="./video/pencil_down.jpg">
+        <source src="./video/pencil_down.mp4" type="video/mp4">
+        <source src="./video/pencil_down.webm" type="video/webm">
+      </video>
+    </div> -->
+    <section class="fix-width default-flex-layout three-stage">
+      <h2 class="hidden">About Section</h2>
+      <section>
+        <div class="about-img">
+          <img src="./images/img-video-camera.png" alt="">
+        </div>
+        <h3 class="default-content section-heading">Craft</h3>
+        <p class="default-content">We take our craft seriously. Originality, Quality, Detail, Storytelling. It’s what we do.</p>
+      </section>
+      <section>
+        <div class="about-img">
+          <img src="./images/img-paint-brush.png" alt="">
+        </div>
+        <h3 class="default-content section-heading">Creativity</h3>
+        <p class="default-content">We have combined all of our creative backgrounds to produce an experience tailored to your specific needs.</p>
+      </section>
+      <section>
+        <div class="about-img">
+          <img src="./images/img-mustache.png" alt="">
+        </div>
+        <h3 class="default-content section-heading">Character</h3>
+        <p class="default-content">Whether its people we work for, or people who work for us, we value honesty, passion and the desire to explore.</p>
+      </section>
+    </section>
+    <!-- <section>
+      <h2>Carousel One</h2>
+    </section> -->
+    <section>
+      <h2 class="hidden">Tutorial</h2>
+      <div class="odd-row">
+        <section class="default-flex-layout fix-width two-stage">
+          <div class="tutorial-img">
+            <img src="./images/img-quality.svg" alt="">
+          </div>
+          <div class="tutorial-content">
+            <h3 class="underline">Quality</h3>
+            <p>Years of continuous test-driven development (more than 5000 tests) and code peer review resulting in a mature product of the highest reliability. Maintained by a dedicated core development team supported by an active open source community, CKEditor is continuously advancing to be the most cutting edge online editor to date.</p>
+          </div>
+        </section>
+      </div>
+      <div class="even-row">
+        <section class="default-flex-layout fix-width two-stage reverse">
+          <div class="tutorial-img">
+            <img src="./images/img-innovation.svg" alt="">
+          </div>
+          <div class="tutorial-content">
+            <h3>Innovation</h3>
+            <p>Constantly leading innovation in the field of rich text editing. Take full control of your content creation process with such unique features as Paste from Word, Advanced Content Filter, widgets, custom HTML formatting and many more.</p>
+          </div>
+        </section>
+      </div>
+      <div class="odd-row">
+        <section class="default-flex-layout fix-width two-stage">
+          <div class="tutorial-img">
+            <img src="./images/img-accessibility.svg" alt="">
+          </div>
+          <div class="tutorial-content">
+            <h3>Accessibility</h3>
+            <p>Complying with the latest web accessibility standards (WCAG 2.0, Section 508, WAI-ARIA) and simultaneously enabling you to create accessible content thanks to a built-in Accessibility Checker.</p>
+          </div>
+        </section>
+      </div>
+      <div class="even-row">
+        <section class="default-flex-layout fix-width two-stage reverse">
+          <div class="tutorial-img">
+            <img src="./images/img-customizability.svg" alt="">
+          </div>
+          <div class="tutorial-content">
+            <h3>Customizability</h3>
+            <p>Customize every single detail of your editor and tailor it to your needs using its robust developer-friendly documentation and a rich JavaScript API.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- <section>
+      <h2>Carousel Two</h2>
+    </section> -->
+    <section class="fix-width">
+      <h2 class="hidden">Member</h2>
+      <div class="default-card">
+        <figure class="member-item">
+          <div class="member-item__container">
+            <div class="member-img--overlay">
+              <img class="member-img" src="./images/img-avatar.png" alt="Avatar 1">
+            </div>
+            <figcaption class="member-info">
+              <h3>Avatar 1</h3>
+              <p>Front-End Developer</p>
+            </figcaption>
+          </div>
+        </figure>
+        <figure class="member-item">
+          <div class="member-item__container">
+            <div class="member-img--overlay">
+              <img class="member-img" src="./images/img-avatar.png" alt="Avatar 2">
+            </div>
+            <figcaption class="member-info">
+              <h3>Avatar 2</h3>
+              <p>Front-End Developer</p>
+            </figcaption>
+          </div>
+        </figure>
+        <figure class="member-item">
+          <div class="member-item__container">
+            <div class="member-img--overlay">
+              <img class="member-img" src="./images/img-avatar.png" alt="Avatar 3">
+            </div>
+            <figcaption class="member-info">
+              <h3>Avatar 3</h3>
+              <p>Front-End Developer</p>
+            </figcaption>
+          </div>
+        </figure>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div>
+      <p><small>© Copyright 2017</small></p>
+    </div>
+    <div>
+      <ul>
+        <li><a href="">Twitter</a></li>
+        <li><a href="">Instagram</a></li>
+        <li><a href="">Facebook</a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+    // var video = document.querySelector('.video-container video');
+    // console.log('window innerHeight: ', window.innerHeight);
+    // console.log('window innerWitdh: ', window.innerWidth);
+    // video.style.cssText = 'height: ' + window.innerHeight + 'px; width: ' + window.innerWidth + 'px';
+    // window.alert(video.style.cssText);
+
+    //jQuery is required to run this code
+$( document ).ready(function() {
+
+    scaleVideoContainer();
+
+    // initBannerVideoSize('.video-container .poster img');
+    // initBannerVideoSize('.video-container .filter');
+    initBannerVideoSize('.video-container video');
+
+    $(window).on('resize', function() {
+        scaleVideoContainer();
+        // scaleBannerVideoSize('.video-container .poster img');
+        // scaleBannerVideoSize('.video-container .filter');
+        scaleBannerVideoSize('.video-container video');
+    });
+
+});
+
+function scaleVideoContainer() {
+
+    var height = $(window).height() + 5;
+    var unitHeight = parseInt(height) + 'px';
+    $('.homepage-hero-module').css('height',unitHeight);
+
+}
+
+function initBannerVideoSize(element){
+
+    $(element).each(function(){
+        $(this).data('height', $(this).height());
+        $(this).data('width', $(this).width());
+    });
+
+    scaleBannerVideoSize(element);
+
+}
+
+function scaleBannerVideoSize(element){
+
+    var windowWidth = $(window).width(),
+    windowHeight = $(window).height() + 5,
+    videoWidth,
+    videoHeight;
+
+    // console.log(windowHeight);
+
+    $(element).each(function(){
+        var videoAspectRatio = $(this).data('height')/$(this).data('width');
+
+        $(this).width(windowWidth);
+
+        if(windowWidth < 1000){
+            videoHeight = windowHeight;
+            videoWidth = videoHeight / videoAspectRatio;
+            $(this).css({'margin-top' : 0, 'margin-left' : -(videoWidth - windowWidth) / 2 + 'px'});
+
+            $(this).width(videoWidth).height(videoHeight);
+        }
+
+        $('.homepage-hero-module .video-container video').addClass('fadeIn animated');
+
+    });
+}
+  </script>
+</body>
+</html>

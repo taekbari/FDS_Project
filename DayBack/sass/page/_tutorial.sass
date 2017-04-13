@@ -1,0 +1,24 @@
+.odd-row
+  background: #eee
+  padding: 1.25rem 0
+
+.even-row
+  background: #ccc
+  padding: 1.25rem 0
+
+.reverse
+  & .tutorial-content > *
+    text-align: right
+
+.underline
+  position: relative
+  display: inline-block
+
+  &::after
+    position: absolute
+    left: 0
+    bottom: -5px
+    content: ''
+    width: 100%
+    height: 3px
+    background: #2eb6e8
