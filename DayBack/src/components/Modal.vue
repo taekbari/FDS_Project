@@ -155,21 +155,24 @@ export default {
           console.log('_this.key', _this.key);
           console.log(response.status);
         // 사용자 정보를 가져온다
-          //   axios.get('https://dayback.hcatpr.com/user/ '+ _this.key, {
-          //     results: {
-          //       nickname: this.nickname,
-          //       email: this.email,
-          //       password: this.password
-          //     }
-          //   })
-          //   .then(response => {
-          //   console.log(response)
-          //   console.log("성공")
-          //   window.alert(response._this.key.user.results.nickname+ '님이 로그인 하셨습니다.');
-          // })
-
-        window.alert(response.key+ '님이 로그인 하셨습니다.');
-        this.$router.push({path: './service'})
+          axios.get('https://dayback.hcatpr.com/user/', {
+            headers: {
+              'Authorization': 'Token ' + _this.key
+            },
+            results: {
+              nickname: this.nickname,
+              email: this.email,
+              password: this.password
+            }
+          })
+          .then(response => {
+            // 요청 후 처리
+            console.log(response)
+            console.log("성공")
+            // user 배열에 하나들어가기 때문에 0번으로 출력한다
+            window.alert(response.data.results[0].nickname+ '님이 로그인 하셨습니다.');
+            // this.$router.push({path: './service'})
+        })
       })
       .catch((error) => {
         console.log(error)
