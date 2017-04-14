@@ -8,7 +8,7 @@
       :duration="{leave: 500}"
       appear 
      >
-      <div v-if="!show" class="wrapper signbox">
+      <div v-if="!show" class="wrapper signbox" key="signin-wrapper">
         <div class="container">
           <a
             @click="closeModal"
@@ -48,7 +48,7 @@
             </div>
           </div>
         </div>
-      <div v-else class="wrapper-signup signbox">
+      <div v-else class="wrapper-signup signbox" key="signup-wrapper">
         <div class="container">
           <a
             @click="closeModal"
@@ -85,7 +85,6 @@
 </template>
 
 <script>
-import Box from './Box.vue';
 import axios from 'axios';
 
 export default {
@@ -109,9 +108,6 @@ export default {
           passwordCheck: ''
       }
     }
-  },
-  components: {
-    Box
   },
   methods: {
     closeModal: function() {
