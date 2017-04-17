@@ -22,10 +22,9 @@ export default {
     this.initBannerVideoSize('.video-container video');
 
     $(window).on('resize', function() {
-      console.log('call resize');
-        _this.scaleVideoContainer();
-        _this.scaleBannerVideoSize('.video-container .poster img');
-        _this.scaleBannerVideoSize('.video-container video');
+      _this.scaleVideoContainer();
+      _this.scaleBannerVideoSize('.video-container .poster img');
+      _this.scaleBannerVideoSize('.video-container video');
     });
 
     $(document).keyup(function(e) {

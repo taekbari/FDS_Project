@@ -1,13 +1,7 @@
 <template>
   <div class="login">
-    <!--로그인 모달 창을 띄우고 없애는 modal 처리 컴포넌트.-->
-    <button 
-      class="button is-danger is-outlined"
-      id="show-modal"
-      @click="showModal = true">로그인 화면 띄우기
-    </button>
     <modal
-      class="modal-template" 
+      class="modal-template"
       v-if="showModal"
       @closeModal="showModal = false"
     ></modal>
@@ -21,14 +15,20 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'Hello Vue, I just started :)',
-      showModal: false,
-      flipModal: false
+      showModal: false
     }
   },
   components: {
     Modal
-}
+  },
+  created() {
+    this.$eventBus.$on('showSignInPopup', this.showSignInPopup);
+  },
+  methods: {
+    showSignInPopup() {
+      this.showModal = true;
+    }
+  }
 }
 </script>
 
