@@ -6,7 +6,7 @@
       leave-active-class="animated flipOutY"
       mode="out-in"
       :duration="{leave: 500}"
-      appear 
+      appear
      >
       <div v-if="!show" class="wrapper signbox" key="signin-wrapper">
         <div class="container">
@@ -21,11 +21,11 @@
                 v-model="signin.email"
                 id="email" placeholder="이메일">
                 <label for="login-id"></label>
-                <input class="login" required type="password" name="password" 
+                <input class="login" required type="password" name="password"
                 v-model="signin.password"
                 id="password" placeholder="비밀번호">
                 <label for="login-id"></label>
-                <input 
+                <input
                   @click="logIn" required
                   type="submit" value="로그인" class="submit-button">
                 <label for="login button"></label>
@@ -60,19 +60,19 @@
                 v-model="signup.nickname" maxlength="10"
                 id="username" placeholder="닉네임">
               <label for="login-id"></label>
-              <input class="login" type="text" name="email" 
+              <input class="login" type="text" name="email"
                 v-model="signup.email"
                 id="email" placeholder="이메일">
               <label for="login-id"></label>
-              <input class="login" type="password" name="password" 
+              <input class="login" type="password" name="password"
                v-model="signup.password"
                id="password" placeholder="비밀번호">
               <label for="login-id"></label>
-              <input class="login" type="password" name="password" 
+              <input class="login" type="password" name="password"
                v-model="signup.passwordCheck"
                id="passwordCheck" placeholder="비밀번호 재확인">
               <label for="login-id"></label>
-              <input 
+              <input
                 @click="signUp"
                 type="submit" value="가입하기" class="signup-button">
               <label for="signup button"></label>
@@ -191,8 +191,8 @@ export default {
   left: 0
   width: 100%
   height: 100%
-  background: #3f3f3f
-  z-index: 10
+  background: rgba(3f, 3f, 3f, 0.5)
+  z-index: 200
   transition: opacity 1s ease
 
 // _common-modules.sass
@@ -217,7 +217,7 @@ fieldset
 
 // local styling
 .wrapper, .wrapper-signup
-  margin: 4rem auto
+  margin: 5rem auto
   display: flex
   @extend %flex-col-center
   &-signup
@@ -231,15 +231,16 @@ fieldset
   background-color: #fff
   border: 1px solid #a322ef
   border-radius: 3px
-  z-index: 100
+  z-index: 210
   @extend %flex-col-center
-  
+
 .close-button
   position: absolute
   top: -10px
   right: -30px
   font-size: 30px
   color: #fff
+  cursor: pointer
 
 .title
   margin-bottom: 30px
@@ -257,7 +258,7 @@ fieldset
     padding: 5px 0
     margin: 0 auto 2px auto
     font-size: 25px
-    text-indent: 10px 
+    text-indent: 10px
   .submit-button, .signup-button
     width: 260px
     border: 1px solid #C5C1FF
