@@ -1,26 +1,11 @@
 <template>
   <div id="app">
-    <!--<app-header></app-header>-->
-    <!--<app-video></app-video>-->
-    <!--<login></login>-->
-    <app-main></app-main>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import Video from './components/Video.vue';
-import Login from './components/Login.vue';
-import Main from './components/Main.vue';
-
 export default {
-  name: 'app',
-  components: {
-    AppHeader: Header,
-    AppVideo: Video,
-    Login,
-    AppMain: Main
-  }
 }
 </script>
 
