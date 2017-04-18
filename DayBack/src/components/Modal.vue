@@ -172,6 +172,7 @@ export default {
             console.log("성공")
             // user 배열에 하나들어가기 때문에 0번으로 출력한다
             window.alert(response.data.results[0].nickname+ '님이 로그인 하셨습니다.');
+            this.$store.state.key = _this.key;
             this.$router.push({path: './service'})
         })
       })
