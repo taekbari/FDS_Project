@@ -29,19 +29,12 @@ export default {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
+
 ul
   padding: 0
   margin: 0
   list-style: none
-
-.md-theme-default a:not(.md-button)
-  color: #fff
-
-  &.logo-heading__link
-    display: block
-    height: 30px
-    line-height: normal
 
 .fixed-header
   width: 100%
@@ -50,6 +43,14 @@ ul
   top: 0
   left: 0
   z-index: 100
+
+  ul:not(.md-list)>li+li
+    margin-top: 0
+
+  a:not(.md-button):not(.md-bottom-bar-item):hover
+    text-decoration: none
+  & a
+    color: #fff
 
 .fix-width
   width: 960px
@@ -66,6 +67,11 @@ ul
   margin: 0
   font-size: 1.5rem
   font-weight: 400
+
+  &__link
+    display: block
+    height: 30px
+    line-height: normal
 
 .gnb
   float: right
