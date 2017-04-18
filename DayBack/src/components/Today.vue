@@ -48,19 +48,19 @@
         let emoji = this.dailyItem.emoji;
         if (emoji == 4) {
           this.dailyEmotion = 'happy';
-          this.emotion_src = require('../assets/happy.png');
+          this.emotion_src = require('../assets/img/happy.png');
         }
         else if (emoji == 3) {
           this.dailyEmotion = 'sulky';
-          this.emotion_src = require('../assets/sulky.png');
+          this.emotion_src = require('../assets/img/sulky.png');
         }
         else if (emoji == 2) {
           this.dailyEmotion = 'naughty';
-          this.emotion_src = require('../assets/naughty.png');
+          this.emotion_src = require('../assets/img/naughty.png');
         }
         else if (emoji == 1) {
           this.dailyEmotion = 'hungry';
-          this.emotion_src = require('../assets/hungry.png');
+          this.emotion_src = require('../assets/img/hungry.png');
         }
         else
           return '이날 기분은 없습니다.'

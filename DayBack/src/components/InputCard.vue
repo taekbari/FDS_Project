@@ -14,13 +14,13 @@
             </md-input-container>
             <div class="emoji-group">
               <a href="#" class="happy" @click.prevent="selectEmoji(4)"
-                 :class="{'active' : user_input.emoji === 4}"><img src="../assets/happy.png" alt=""></a>
+                 :class="{'active' : user_input.emoji === 4}"><img src="../assets/img/happy.png" alt=""></a>
               <a href="#" class="sulky" @click.prevent="selectEmoji(3)"
-                 :class="{'active' : user_input.emoji === 3}"><img src="../assets/sulky.png" alt=""></a>
+                 :class="{'active' : user_input.emoji === 3}"><img src="../assets/img/sulky.png" alt=""></a>
               <a href="#" class="naughty" @click.prevent="selectEmoji(2)"
-                 :class="{'active' : user_input.emoji === 2}"><img src="../assets/naughty.png" alt=""></a>
+                 :class="{'active' : user_input.emoji === 2}"><img src="../assets/img/naughty.png" alt=""></a>
               <a href="#" class="hungry" @click.prevent="selectEmoji(1)"
-                 :class="{'active' : user_input.emoji === 1}"><img src="../assets/hungry.png" alt=""></a>
+                 :class="{'active' : user_input.emoji === 1}"><img src="../assets/img/hungry.png" alt=""></a>
             </div>
           </md-input-container>
         </form>
@@ -84,7 +84,6 @@
     margin: 60px auto
     width: 800px
     min-height: 400px
-    // 내용 쓰는 것 글자수 제한해야 하나? 안 그러면 view가 어떻게 되지
 
   .input-area
     display: block

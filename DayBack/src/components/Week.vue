@@ -23,7 +23,6 @@
     name: 'Week',
     data () {
       return {
-//        scrolled: false,
         rect: ''
       }
     },
@@ -32,7 +31,6 @@
     updated () {
       let listItems = document.querySelectorAll('.weeklyItems li');
       window.addEventListener('scroll', () => callbackFunc(listItems));
-
     }
   }
 
