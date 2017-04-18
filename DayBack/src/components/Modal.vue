@@ -39,7 +39,7 @@
               <p class="login-info">{{signin.loginInfo}}</p>
               <div class="social-buttons">
                 <a href="#" class="social-google"
-                @click=""
+                @click.prevent="googleLogin"
                 ><span>G</span></a>
                 <a href="#" class="social-facebook"
                 @click=""
@@ -86,6 +86,7 @@
 
 <script>
 import axios from 'axios';
+import firebaseService from '../service/firebaseService.js';
 
 export default {
   data () {
@@ -171,7 +172,6 @@ export default {
             console.log("성공")
             // user 배열에 하나들어가기 때문에 0번으로 출력한다
             window.alert(response.data.results[0].nickname+ '님이 로그인 하셨습니다.');
-            this.$store.state.key = _this.key;
             this.$router.push({path: './service'})
         })
       })
@@ -179,8 +179,15 @@ export default {
         console.log(error)
         window.alert('이메일 주소나 비밀번호에 문제가 있어요!');
       })
+    },
+    googleLogin() {
+      firebaseService.googleLogin().then(user => {
+          this.$store.userInfo = user;
+          this.closeModal();
+          this.$router.push('/service');
+        });
     }
-  },
+  }
 }
 
 </script>

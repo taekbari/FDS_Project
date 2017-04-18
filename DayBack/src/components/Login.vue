@@ -1,5 +1,7 @@
 <template>
   <div class="login">
+    <app-header></app-header>
+    <app-video></app-video>
     <modal
       class="modal-template"
       v-if="showModal"
@@ -9,6 +11,8 @@
 </template>
 
 <script>
+import Video from './Video.vue';
+import Header from './Header.vue';
 import Modal from './Modal.vue';
 
 export default {
@@ -19,6 +23,8 @@ export default {
     }
   },
   components: {
+    AppHeader: Header,
+    AppVideo: Video,
     Modal
   },
   created() {
@@ -34,7 +40,7 @@ export default {
 
 <style lang="sass">
 
-.login
-  margin: 1rem
+// .login
+//   margin: 1rem
 
 </style>
