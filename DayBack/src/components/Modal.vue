@@ -193,7 +193,7 @@ export default {
 
 </script>
 
-<style lang="sass">
+<style lang="sass" rel="stylesheet/sass">
 .modal-template
   position: fixed
   top: 0

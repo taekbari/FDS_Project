@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
 import Main from './components/Main.vue'
+import Django from './components/DjangoTest.vue'
 
 Vue.use(VueMaterial);
 // vue-router 사용을 위한 설정
@@ -15,7 +16,7 @@ const eventBus = new Vue();
 // Vue.prototype에 store 객체 연결
 const store = {
     state: {
-        key: '',
+        key: 'edf2af038824db4402adceef5532b67eac886344',
         userInfo: null
     }
 };
@@ -42,7 +43,12 @@ const routes = [{
     {
         path: '/service',
         component: Main,
+    },
+    {
+        path: '/d',
+        component: Django
     }
+
 ];
 
 // 라우터 객체 생성하고 정의해 놓은 라우트 설정
