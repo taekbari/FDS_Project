@@ -15,7 +15,7 @@ const eventBus = new Vue();
 // Vue.prototype에 store 객체 연결
 const store = {
     state: {
-        key: '',
+        key: "dc0175a26a365df4637ec75354810965ef65070c",
         userInfo: null
     }
 };

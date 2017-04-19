@@ -4,12 +4,12 @@
     <ul class="weeklyItems">
       <li :class="item.matchingColor" v-for="item of weeklyItems">
         <md-card>
-          <span class="weeklyItemsDate">{{item.date}}</span>
+          <span class="weeklyItemsDate">{{item.created}}</span>
           <div class="weeklyContent">
             <md-card-media>
               <img class="emojiPic" :src="item.emojiSrc" alt="">
             </md-card-media>
-            <md-card-content>{{item.comment}}</md-card-content>
+            <md-card-content>{{item.content}}</md-card-content>
           </div>
         </md-card>
       </li>
@@ -36,7 +36,6 @@
 
   function isElementInViewport(el) {
     let rect = el.getBoundingClientRect();
-    console.log('완전 이해 못함');
     return (
       rect.top >= 0 &&
       rect.left >= 0 &&

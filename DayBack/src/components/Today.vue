@@ -3,15 +3,15 @@
     <div class="daily">
       <div class="daily-title">Today</div>
       <md-card class="dailyCard">
-        <span class="dailyDate">{{dailyItem.date}}</span>
+        <span class="dailyDate">{{todayItem.created}}</span>
         <div class="dailyContent">
           <md-card-media>
             <div :class="dailyEmotion">
-              <img class="dailyEmoji" :src="this.emotion_src" alt="">
+              <img class="dailyEmoji" :src="emotion_src" alt="">
             </div>
           </md-card-media>
           <md-card-content>
-            {{dailyItem.comment}}
+            {{todayItem.content}}
           </md-card-content>
         </div>
         <div class="btn-group">
@@ -25,65 +25,75 @@
 
 <script>
   import moment from 'moment';
-  import Vue from 'vue';
-  import firebaseService from '../service/firebaseService';
+  import axios from 'axios';
 
   const DATE_FORMAT = 'YYYY년 M월 D일';
 
   export default {
     name: 'today',
+    props: [
+      'todayItem'
+    ],
     data () {
       return {
         dailyEmotion: '',
         emotion_src: '',
         dailyItem: {
-          emoji: '이날은 기록한 기분이 없습니다',
-          comment: '이날은 기록한 코멘트가 없습니다.'
+          created: '',
+          author: '',
+          mood: '',
+          content: '이날은 기록한 코멘트가 없습니다.'
         },
         datalist: []
       }
     },
     methods: {
       renderEmoji() {
-        let emoji = this.dailyItem.emoji;
-        if (emoji == 4) {
+        let mood = this.todayItem.mood;
+        if (mood == 4) {
           this.dailyEmotion = 'happy';
           this.emotion_src = require('../assets/img/happy.png');
         }
-        else if (emoji == 3) {
+        else if (mood == 3) {
           this.dailyEmotion = 'sulky';
           this.emotion_src = require('../assets/img/sulky.png');
         }
-        else if (emoji == 2) {
+        else if (mood == 2) {
           this.dailyEmotion = 'naughty';
           this.emotion_src = require('../assets/img/naughty.png');
         }
-        else if (emoji == 1) {
+        else if (mood == 1) {
           this.dailyEmotion = 'hungry';
           this.emotion_src = require('../assets/img/hungry.png');
         }
         else
           return '이날 기분은 없습니다.'
       },
-
       changeDaily(){
         this.$emit('changeDailyCard')
       },
-
       deleteDaily(){
-        firebaseService.deleteEmoji({uid: Vue.thisUser.uid, date: new Date()})
-          .then(()=> this.$emit('changeDailyCard'))
+        // 수정과 비슷하지만 this.userInput(data)은 넣어주지 않음
+        axios.delete('https://dayback.hcatpr.com/post/' + this.todayItem.id + '/', {
+          headers: {
+              'Authorization': 'Token ' + this.$store.state.key
+          }
+        })
+        .then(response => {
+          console.log(response);
+          window.alert('삭제가 완료되었습니다!');
+          this.component_selected = '';
+          this.$eventBus.$emit('changeComplete');
+        })
+        .catch(error => console.error(error.message)
+        );
       }
     },
-    created: function () {
-      firebaseService.fetchEmoji({uid: Vue.thisUser.uid, date: new Date()})
-        .then(r=>{
-            this.dailyItem = r;
-            this.dailyItem.date = moment().format(DATE_FORMAT);
-            this.renderEmoji();
-        })
+    created() {
+      this.renderEmoji();
+      console.log('todayItem', this.todayItem)
     }
-  };
+  }
 </script>
 
 <style lang="sass" scoped rel="stylesheet/sass">
