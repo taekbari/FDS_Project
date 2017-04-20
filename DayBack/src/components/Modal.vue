@@ -26,7 +26,7 @@
                 id="password" placeholder="비밀번호">
                 <label for="login-id"></label>
                 <input
-                  @click="logIn" required
+                  @click="logIn" @keyup.enter="logIn" required
                   type="submit" value="로그인" class="submit-button">
                 <label for="login button"></label>
                 <a href="#"

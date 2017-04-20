@@ -82,7 +82,6 @@
         .then(response => {
           console.log(response);
           window.alert('삭제가 완료되었습니다!');
-          this.component_selected = '';
           this.$eventBus.$emit('changeComplete');
         })
         .catch(error => console.error(error.message)
@@ -98,7 +97,7 @@
 
 <style lang="sass" scoped rel="stylesheet/sass">
   .daily
-    margin: 60px auto
+    margin: 0 auto 60px
     width: 800px
     min-height: 400px
     position: relative

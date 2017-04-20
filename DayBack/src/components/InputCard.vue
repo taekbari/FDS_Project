@@ -55,10 +55,10 @@ import axios from 'axios';
     mounted() {
       console.log('mounted this.todayItem', this.todayItem)
       // 두번 실행됨(뿌려줄 때 다시 한 번)
-      if(this.todayItem.content) {
+      if(this.todayItem && this.todayItem.content) {
         this.userInput.content = this.todayItem.content;
       } 
-      if(this.todayItem.mood) {
+      if(this.todayItem && this.todayItem.mood) {
         this.userInput.mood = this.todayItem.mood;
       } 
     },
@@ -106,7 +106,7 @@ import axios from 'axios';
 
 <style lang="sass" scoped rel="stylesheet/sass">
   .input-card
-    margin: 60px auto
+    margin: 0 auto 60px
     width: 800px
     min-height: 400px
 

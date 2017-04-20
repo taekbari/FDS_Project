@@ -59,16 +59,19 @@
       box-sizing: border-box
 
     .week
+      margin: 0 auto
+      position: relative
       background: #fff
       padding: 60px
+      width: 800px
       border-radius: 5px
-      overflow: auto
+      // weekly 제목 카드 보이게 하기
+      overflow: visible
       box-shadow: 0 1px 5px rgba(0, 0, 0, .2), 0 2px 2px rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12)
-      /*display: flex*/
-      /*flex-direction: column*/
-      /*justify-content: center*/
-      /*align-items: center*/
-      position: relative
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
 
     .weekly-title
       background: lightcoral

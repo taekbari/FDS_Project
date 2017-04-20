@@ -81,12 +81,24 @@
           let inputDate = this.weeklyItems[0].created;
           let date = moment(new Date()).format('YYYY-MM-DD');
           console.log('date', date);
-
+          // today 불러오기
           if (inputDate === date) {
             console.log('오늘의 날짜')
             this.todayItem = this.weeklyItems.splice(0, 1)[0];
             // 값이 있는 경우 호출할 함수(조회창으로 이동)
             this.changeDailyView();
+          } else {
+            // today가 없을 때 처리(삭제 시)
+            this.todayItem = null;
+            this.component_selected = 'input-card';
+            // 아래 속성을 바꿔주지 않으면 changeDailyView(화면 전환)에서 
+            // this.isUpdate 값이 true로 머물러 있어서 id가 없다고 함 -> InputCard.vue에서
+            // put을 타기 때문에 문제 생김 - Post로 바꿔줘야 함
+            this.isUpdate = false;
+          }
+          // weekly 7개씩 불러오기 -> today를 먼저 확인하고 7개씩 자르기 위해서
+          if ( this.weeklyItems.length >= 7 ) {
+              this.weeklyItems = this.weeklyItems.splice(0, 7);
           }
           console.log('this.weeklyItems : ', this.weeklyItems);
           console.log('this.todayItem : ', this.todayItem);
@@ -100,6 +112,7 @@
         console.log('changeDailyView 실행됌');
         this.component_selected = this.component_selected 
         === 'input-card' ? 'today' : 'input-card';
+        // 삭제 시에는 아래 값을 false로 바꿔줘야함 - 위의 90번째 줄
         this.isUpdate = true;
       },
       setEmojiSrcAndColor() {
@@ -135,10 +148,7 @@
           // 동적으로 속성 추가
           // this.weeklyItems[index].matchingColor = color;
         }
-          
-          
-          console.log('setEmojiSrcAndColor')
-          
+          console.log('setEmojiSrcAndColor') 
       }
     },
   }
@@ -146,13 +156,10 @@
 
 <style lang="sass" scoped rel="stylesheet/sass">
 
-  *, *::before, *::after
+body #member 
+  padding-top: 60px
+  background-image: linear-gradient(65deg, #FFBAC3 0%, #C5C1FF 56%, #2CD8D5 100%)
+*, *::before, *::after
     box-sizing: border-box
 
-  .modal
-    z-index: 10
-
-  .login-card,
-  .signup-card
-    z-index: 100
 </style>
