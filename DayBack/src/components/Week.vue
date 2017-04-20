@@ -107,16 +107,16 @@
       border-radius: 50%
 
     .happy::before
-      background: yellow
+      background: #ffdc00;
 
     .sulky::before
-      background: green
+      background: #3cb371
 
     .naughty::before
-      background: blue
-
+      background: #C5C1FF
+      
     .hungry::before
-      background: red
+      background: #2CD8D5
 
     // 카드에 화살표 붙이는 부분
     //.md-card
