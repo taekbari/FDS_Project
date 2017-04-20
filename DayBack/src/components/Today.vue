@@ -76,7 +76,7 @@
               }).then(response => {
                   console.log(response);
                   window.alert('삭제되었습니다');
-                  this.component_selected = '';
+//                  this.component_selected = '';
                   this.$eventBus.$emit('changeComplete');
               }).catch(e => {
                   console.error('삭제에 실패했습니다');
