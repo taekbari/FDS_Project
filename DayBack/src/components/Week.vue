@@ -4,12 +4,12 @@
     <ul class="weeklyItems">
       <li :class="item.matchingColor" v-for="item of weeklyItems">
         <md-card>
-          <span class="weeklyItemsDate">{{item.date}}</span>
+          <span class="weeklyItemsDate">{{item.created}}</span>
           <div class="weeklyContent">
             <md-card-media>
               <img class="emojiPic" :src="item.emojiSrc" alt="">
             </md-card-media>
-            <md-card-content>{{item.comment}}</md-card-content>
+            <md-card-content>{{item.content}}</md-card-content>
           </div>
         </md-card>
       </li>
@@ -19,6 +19,9 @@
 </template>
 
 <script>
+
+  import axios from 'axios';
+
   export default {
     name: 'Week',
     data () {
@@ -36,7 +39,6 @@
 
   function isElementInViewport(el) {
     let rect = el.getBoundingClientRect();
-    console.log('완전 이해 못함');
     return (
       rect.top >= 0 &&
       rect.left >= 0 &&
@@ -63,12 +65,8 @@
       background: #fff
       padding: 60px
       border-radius: 5px
-      overflow: auto
+      overflow: visible
       box-shadow: 0 1px 5px rgba(0, 0, 0, .2), 0 2px 2px rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12)
-      /*display: flex*/
-      /*flex-direction: column*/
-      /*justify-content: center*/
-      /*align-items: center*/
       position: relative
 
     .weekly-title
@@ -80,7 +78,6 @@
       z-index: 100
       font-weight: 600
       font-size: 1.2em
-    // daily의 margin에 가려서 위에가 짤려 보임 ㅠㅠ..
 
     ul
       list-style: none
@@ -93,13 +90,15 @@
       padding-left: 30px
       min-width: 200px
       width: 380px
-      postion: relative
+      position: relative
       visibility: hidden
 
     li::before
       content: ''
       position: absolute
-      left: 395px
+      left: 0
+      top: 50%
+      transform: translate(-50%, -50%)
       width: 10px
       height: 10px
       border-radius: 50%

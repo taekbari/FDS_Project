@@ -4,113 +4,126 @@
       <transition enter-active-class="animated flipInY" leave-active-class="animated flipOutY" duration="450"
                   mode="out-in" appear>
         <component @changeDailyCard="changeDailyView"
-                   :comment="todayComment"
-                   :emoji="todayEmoji"
+                   :todayItem="todayItem"
+                   :authorID="authorID"
                    :is-update="isUpdate"
                    :is="component_selected">
         </component>
       </transition>
-      <week :weeklyItems="this.weeklyItems"></week>
+      <week :weeklyItems="weeklyItems"></week>
     </div>
-    <!--<modal v-if="popUpModal">-->
-      <!--<transition enter-active-class="animated flipInY" leave-active-class="animated flipOutY" duration="450"-->
-                  <!--mode="out-in" appear>-->
-        <!--<component @changeMode="changeView"-->
-                   <!--@closeModalView="closeModal"-->
-                   <!--:is="modal_component_selected">-->
-        <!--</component>-->
-      <!--</transition>-->
-    <!--</modal>-->
   </div>
 </template>
 
 <script>
-  import Vue from 'vue'
-//  import Login from './Login.vue'
-//  import Signup from './Signup.vue'
-//  import Modal from './Modal.vue'
   import InputCard from './InputCard.vue'
   import Today from './Today.vue'
-  import firebaseService from '../service/firebaseService'
   import Week from './Week.vue'
   import moment from 'moment/moment'
+  import axios from 'axios';
 
   export default {
     name: 'main',
     data () {
       return {
+          // 오늘 아이템
+        todayItem: {},
+          // 주간 아이템
         weeklyItems : [],
-        popUpModal: false,
-        showLogin: false,
-        completeToday: false,
-        modal_component_selected: 'login',
+          // 사용자 아이디 (토큰값)
+        authorID: 0,
         component_selected: 'input-card',
-        showWeek: false,
-        todayComment: '',
-        todayEmoji: '',
         isUpdate : false
       }
     },
     components: {
-//      Modal,
-//      Login,
-//      Signup,
       InputCard,
       Today,
       Week
     },
     methods: {
-      fetchDailyAndWeeklyEmojis() {
-        if(Vue.isLogined()) {
-          firebaseService.fetchEmoji({uid: Vue.thisUser.uid, date: new Date()}).then(r => {
-            if (r)
-              this.component_selected = 'today';
-          });
-          firebaseService.fetchEmojis({uid: Vue.thisUser.uid, baseDate: moment().add(-1, 'days').toDate(), range: 7})
-            .then(r => {
-//                console.log('weekly', r);
-              this.weeklyItems = r.map(item => {
-                item.date = moment(item.date, 'YYYYMMDD').format('YYYY년 M월 D일');
-                return item;
-              });
-            });
-        }
-      },
-      showModal(){
-        console.log('showModal 실행됌');
-        this.popUpModal = true;
-        this.showLogin = true;
-        this.hideModalBtn = false;
-      },
-      closeModal(){
-        console.log('closeModal 실행됌');
-        this.popUpModal = false;
-        this.hideModalBtn = true;
+      setEmojiAndColor(){
+          let index, length;
+          length = this.weeklyItems.length;
 
-        this.fetchDailyAndWeeklyEmojis();
+          for (index=0; index < length; index++) {
+              let emoji = this.weeklyItems[index].mood;
+              let color = '';
+
+              switch (emoji) {
+                  case 4:
+                      this.weeklyItems[index].emojiSrc = require('../assets/img/happy.png');
+                      color = 'happy';
+                      break;
+
+                  case 3:
+                      this.weeklyItems[index].emojiSrc = require('../assets/img/sulky.png');
+                      color = 'sulky';
+                      break;
+
+                  case 2:
+                      this.weeklyItems[index].emojiSrc = require('../assets/img/naughty.png');
+                      color = 'naughty';
+                      break;
+
+                  case 1:
+                      this.weeklyItems[index].emojiSrc = require('../assets/img/hungry.png');
+                      color = 'hungry';
+                      break;
+
+              }
+              this.weeklyItems[index].matchingColor = color;
+          }
       },
-      changeView(){
-        console.log('changeView 실행됌');
-        this.modal_component_selected = this.modal_component_selected === 'login' ? 'signup' : 'login';
+      fetchDailyAndWeeklyEmojis() {
+          // axios 통신 호출
+          // 사용자 정보 가져오기
+          axios.get('https://dayback.hcatpr.com/user/', {
+              headers: {
+                  'Authorization': 'Token ' + this.$store.state.key
+              }
+          }).then(response=>{
+              // 성공시 처리
+              // 서버에서 받아온 사용자 정보의 ID값을 authorID에 할당
+              console.log(response);
+              this.authorID = response.data.results[0].id;
+          }).catch(e=>{
+              window.alert('사용자 정보를 가져오는데 실패했습니다');
+          });
+
+          // 글 목록 가져오기
+          axios.get('https://dayback.hcatpr.com/post/', {
+              headers: {
+                  'Authorization': 'Token ' + this.$store.state.key
+              }
+          }).then(response=>{
+              this.weeklyItems = response.data.results;
+              this.setEmojiAndColor();
+
+              let inputDate = this.weeklyItems[0].created;
+              let date = moment(new Date()).format('YYYY-MM-DD');
+              if(inputDate === date) {
+                  this.todayItem = this.weeklyItems.splice(0, 1)[0];
+                  this.changeDailyView();
+              }
+
+//              this.todayItem = this.weeklyItems[0];
+              console.log('주간아이템', this.weeklyItems)
+              console.log('일간아이템', this.todayItem)
+          }).catch(e=>{
+              console.log('글 목록 가져오기 실패함')
+          })
       },
       changeDailyView(){
+          // 입력, 일간 교체 부분
         console.log('changeDailyView 실행됌');
         this.component_selected = this.component_selected === 'input-card' ? 'today' : 'input-card';
-        firebaseService.fetchEmoji({uid: Vue.thisUser.uid, date: new Date()}).then(r => {
-          if (r) {
-            this.todayComment = r.comment;
-            this.todayEmoji = r.emoji;
-            this.isUpdate = true;
-          }
-        });
+        this.isUpdate = true;
       }
     },
     created() {
-      if (!Vue.isLogined()) {
-        this.modal_component_selected = 'login';
-        this.showModal();
-      }
       this.fetchDailyAndWeeklyEmojis();
+      this.$eventBus.$on('changeComplete', this.fetchDailyAndWeeklyEmojis);
     }
   }
 </script>
