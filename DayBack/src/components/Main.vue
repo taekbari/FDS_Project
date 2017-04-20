@@ -70,7 +70,6 @@
                       this.weeklyItems[index].emojiSrc = require('../assets/img/hungry.png');
                       color = 'hungry';
                       break;
-
               }
               this.weeklyItems[index].matchingColor = color;
           }
@@ -102,28 +101,38 @@
 
               let inputDate = this.weeklyItems[0].created;
               let date = moment(new Date()).format('YYYY-MM-DD');
+
               if(inputDate === date) {
                   this.todayItem = this.weeklyItems.splice(0, 1)[0];
                   this.changeDailyView();
+              } else {
+                  this.todayItem = null;
+                  this.isUpdate = false;
+                  this.component_selected = 'input-card';
               }
 
-//              this.todayItem = this.weeklyItems[0];
-              console.log('주간아이템', this.weeklyItems)
-              console.log('일간아이템', this.todayItem)
+              // 주간을 7개까지만 보여주도록 splice로 자르는 부분
+              if(this.weeklyItems.length > 7) {
+                  console.log('짜르기 전 주간아이템', this.weeklyItems)
+                  this.weeklyItems = this.weeklyItems.splice(0, 7);
+                  console.log('짜른 후 주간아이템', this.weeklyItems)
+              }
           }).catch(e=>{
               console.log('글 목록 가져오기 실패함')
           })
       },
       changeDailyView(){
-          // 입력, 일간 교체 부분
-        console.log('changeDailyView 실행됌');
-        this.component_selected = this.component_selected === 'input-card' ? 'today' : 'input-card';
-        this.isUpdate = true;
-      }
+            // 입력, 일간 교체 부분
+            console.log('changeDailyView 실행됌');
+            this.component_selected = this.component_selected === 'input-card' ? 'today' : 'input-card';
+            this.isUpdate = true;
+        }
     },
     created() {
       this.fetchDailyAndWeeklyEmojis();
       this.$eventBus.$on('changeComplete', this.fetchDailyAndWeeklyEmojis);
+      // view 전환이 통신이 끝나기 전에 되니까 값 비우지 못함
+      this.$eventBus.$on('changeDailyCard', this.changeDailyView);
     }
   }
 </script>
@@ -132,6 +141,10 @@
 
   *, *::before, *::after
     box-sizing: border-box
+
+  body #member
+    padding-top: 60px
+    background: lightgray linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%)
 
   .modal
     z-index: 10

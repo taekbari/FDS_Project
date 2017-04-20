@@ -51,10 +51,11 @@
     },
       // 수정시 입력 카드로 돌아갈 때 그 인풋창에 입력값 자체가 계속 넣어져 있는 것
     mounted () {
-        if (this.todayItem.content){
+        console.log('input card : ', this.todayItem);
+        if (this.todayItem && this.todayItem.content){
             this.user_input.content = this.todayItem.content;
         }
-        if (this.todayItem.mood){
+        if (this.todayItem && this.todayItem.mood){
             this.user_input.mood = this.todayItem.mood;
         }
     },
@@ -64,6 +65,7 @@
         console.log(emoji);
       },
       createEmoji() {
+          // 입력된 값이 없을 때 기본값 넣는 것 처리 필요
         this.user_input.author = this.authorID;
 
         if (this.isUpdate) {
@@ -73,8 +75,6 @@
                 }
             }).then(response=>{
                 console.log(response);
-
-//                this.component_selected = '';
                 this.$eventBus.$emit('changeComplete');
             }).catch(e=>{
                 console.error('수정에 실패했습니다');
@@ -87,8 +87,6 @@
                 }
             }).then(response=>{
                 console.log(response.data);
-
-//                this.component_selected = '';
                 this.$eventBus.$emit('changeComplete');
             }).catch(e=>{
                 window.alert('입력에 실패했습니다');
@@ -101,9 +99,9 @@
 
 <style lang="sass" scoped rel="stylesheet/sass">
   .input-card
-    margin: 60px auto
+    margin: 0 auto 60px
     width: 800px
-    min-height: 400px
+    min-height: 450px
 
   .input-area
     display: block

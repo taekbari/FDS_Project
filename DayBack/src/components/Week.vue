@@ -62,7 +62,9 @@
       box-sizing: border-box
 
     .week
+      margin: 0 auto
       background: #fff
+      width: 800px
       padding: 60px
       border-radius: 5px
       overflow: visible
@@ -115,25 +117,12 @@
     .hungry::before
       background: red
 
-    // 카드에 화살표 붙이는 부분
-    //.md-card
-      position: relative
-
-    //.md-card::before
-      content: ''
-      width: 0
-      height: 0
-      border-top: 10px solid transparent
-      border-bottom: 10px solid transparent
-      border-right: 20px solid lightcoral
-      position: absolute
-      left: -8px
-
     li:nth-child(odd) .md-card
       left: -410px
 
     .md-card
-      padding: 10px
+      padding: 30px
+      margin-left: 10px
 
     .md-card .md-card-media img
       width: 50%

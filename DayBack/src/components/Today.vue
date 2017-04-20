@@ -3,7 +3,7 @@
     <div class="daily">
       <div class="daily-title">Today</div>
       <md-card class="dailyCard">
-        <span class="dailyDate">{{dailyItem.date}}</span>
+        <span class="dailyDate">{{todayItem.created}}</span>
         <div class="dailyContent">
           <md-card-media>
             <div :class="dailyEmotion">
@@ -35,8 +35,8 @@
               dailyEmotion: '',
               emotion_src: '',
               dailyItem: {
-                  emoji: '이날은 기록한 기분이 없습니다',
-                  comment: '이날은 기록한 코멘트가 없습니다.'
+                  mood: '기록한 기분이 없습니다',
+                  content: '작성한 코멘트가 없습니다.'
               },
               datalist: []
           }
@@ -75,8 +75,12 @@
                   }
               }).then(response => {
                   console.log(response);
+                  console.log('this.todayItem.id', this.todayItem.id);
                   window.alert('삭제되었습니다');
-//                  this.component_selected = '';
+
+                  // 삭제했을 때 다시 돌리는 부분 (통신이 끝나기 전에 컴포넌트를 돌리면 통신을 하면서 값을 비우는 걸 다 못 하니까 하면 안됌)
+//                  this.$eventBus.$emit('changeDailyCard');
+                  // 수정, 삭제 마무리하고 다시 뿌려줄 때
                   this.$eventBus.$emit('changeComplete');
               }).catch(e => {
                   console.error('삭제에 실패했습니다');
@@ -95,10 +99,10 @@
 
 <style lang="sass" scoped rel="stylesheet/sass">
   .daily
-    margin: 60px auto
-    width: 800px
-    min-height: 400px
+    margin: 0 auto 60px
     position: relative
+    width: 800px
+    min-height: 450px
 
   .daily-title
     background: powderblue
