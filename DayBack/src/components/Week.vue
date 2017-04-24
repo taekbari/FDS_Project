@@ -51,7 +51,6 @@
     for (var i = 0; i < listItems.length; i++) {
       if (isElementInViewport(listItems[i])) {
         listItems[i].classList.add("in-view");
-        console.log('in-view');
       }
     }
   }
@@ -62,7 +61,9 @@
       box-sizing: border-box
 
     .week
+      margin: 0 auto
       background: #fff
+      width: 800px
       padding: 60px
       border-radius: 5px
       overflow: visible
@@ -84,7 +85,7 @@
       padding-left: 0
       width: 2px
       margin: 0 auto
-      background: lightcoral
+      background: #FFBAC3
 
     li
       padding-left: 30px
@@ -96,44 +97,31 @@
     li::before
       content: ''
       position: absolute
-      left: 0
+      left: -9px
       top: 50%
-      transform: translate(-50%, -50%)
-      width: 10px
-      height: 10px
+      transform: translate(0, -50%)
+      width: 20px
+      height: 20px
       border-radius: 50%
 
     .happy::before
-      background: yellow
+      background: #ffdc00
 
     .sulky::before
-      background: green
+      background: #3cb371
 
     .naughty::before
-      background: blue
+      background: #C5C1FF
 
     .hungry::before
-      background: red
-
-    // 카드에 화살표 붙이는 부분
-    //.md-card
-      position: relative
-
-    //.md-card::before
-      content: ''
-      width: 0
-      height: 0
-      border-top: 10px solid transparent
-      border-bottom: 10px solid transparent
-      border-right: 20px solid lightcoral
-      position: absolute
-      left: -8px
+      background: #2CD8D5
 
     li:nth-child(odd) .md-card
       left: -410px
 
     .md-card
-      padding: 10px
+      padding: 30px
+      margin-left: 10px
 
     .md-card .md-card-media img
       width: 50%
