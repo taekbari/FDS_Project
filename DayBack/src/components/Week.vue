@@ -51,7 +51,6 @@
     for (var i = 0; i < listItems.length; i++) {
       if (isElementInViewport(listItems[i])) {
         listItems[i].classList.add("in-view");
-        console.log('in-view');
       }
     }
   }
@@ -86,7 +85,7 @@
       padding-left: 0
       width: 2px
       margin: 0 auto
-      background: lightcoral
+      background: #FFBAC3
 
     li
       padding-left: 30px
@@ -98,24 +97,24 @@
     li::before
       content: ''
       position: absolute
-      left: 0
+      left: -9px
       top: 50%
-      transform: translate(-50%, -50%)
-      width: 10px
-      height: 10px
+      transform: translate(0, -50%)
+      width: 20px
+      height: 20px
       border-radius: 50%
 
     .happy::before
-      background: yellow
+      background: #ffdc00
 
     .sulky::before
-      background: green
+      background: #3cb371
 
     .naughty::before
-      background: blue
+      background: #C5C1FF
 
     .hungry::before
-      background: red
+      background: #2CD8D5
 
     li:nth-child(odd) .md-card
       left: -410px

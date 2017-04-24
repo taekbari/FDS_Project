@@ -99,8 +99,14 @@
               this.weeklyItems = response.data.results;
               this.setEmojiAndColor();
 
-              let inputDate = this.weeklyItems[0].created;
-              let date = moment(new Date()).format('YYYY-MM-DD');
+              let inputDate = '',
+                  date = '';
+
+              // 글 목록이 존재하지 않을 경우의 처리를 위한 유효성 검사
+              if (this.weeklyItems[0]) {
+                inputDate = this.weeklyItems[0].created;
+              }
+              date = moment(new Date()).format('YYYY-MM-DD');
 
               if(inputDate === date) {
                   this.todayItem = this.weeklyItems.splice(0, 1)[0];
@@ -116,7 +122,15 @@
                   console.log('짜르기 전 주간아이템', this.weeklyItems)
                   this.weeklyItems = this.weeklyItems.splice(0, 7);
                   console.log('짜른 후 주간아이템', this.weeklyItems)
+                  // 임시로 데이터 가공 (영상 촬용 위해)
+                  let dateList = ['2017-04-20', '2017-04-19', '2017-04-18', '2017-04-17', '2017-04-16', '2017-04-15', '2017-04-14'];
+                  let contentList = ['하루의 감정을 입력해보세요!', '오늘을 돌아보고 기록으로 남겨보세요!', '이모티콘을 선택해서 감정을 표현해도 됩니다!', '간단한 글로 표현해도 되고요!', '입력했던 기록들을 살펴볼수도 있어요!', '하루 하루의 감정을 남기고 확인하고 싶다면,', '지금 이용해 보세요!'];
+                  for (let index = 0; index < this.weeklyItems.length; index++) {
+                    this.weeklyItems[index].content = contentList[index];
+                    this.weeklyItems[index].created = dateList[index];
+                  }
               }
+
           }).catch(e=>{
               console.log('글 목록 가져오기 실패함')
           })
@@ -144,12 +158,8 @@
 
   body #member
     padding-top: 60px
-    background: lightgray linear-gradient(to right, #e4afcb 0%, #b8cbb8 0%, #b8cbb8 0%, #e2c58b 30%, #c2ce9c 64%, #7edbdc 100%)
+    background: linear-gradient(65deg, #FFBAC3 0%, #C5C1FF 56%, #2CD8D5 100%)
 
-  .modal
-    z-index: 10
-
-  .login-card,
-  .signup-card
-    z-index: 100
+  .flex-wrapper
+    padding-bottom: 60px
 </style>

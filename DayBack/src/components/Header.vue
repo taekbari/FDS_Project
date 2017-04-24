@@ -35,14 +35,6 @@ ul
   margin: 0
   list-style: none
 
-.md-theme-default a:not(.md-button)
-  color: #fff
-
-  &.logo-heading__link
-    display: block
-    height: 30px
-    line-height: normal
-
 .fixed-header
   width: 100%
   background: rgba(3, 3, 3, 0.7)
@@ -50,6 +42,15 @@ ul
   top: 0
   left: 0
   z-index: 100
+
+  & a:not(.md-button):not(.md-bottom-bar-item)
+    color: #fff
+    text-decoration: none
+
+    &.logo-heading__link
+      display: block
+      height: 30px
+      line-height: normal
 
 .fix-width
   width: 960px
@@ -70,6 +71,9 @@ ul
 .gnb
   float: right
 
+  & li
+    margin-top: 0
+    
   &__item
     padding: 5px 8px
     margin: 0 5px

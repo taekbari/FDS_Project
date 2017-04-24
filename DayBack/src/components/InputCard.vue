@@ -76,6 +76,7 @@
             }).then(response=>{
                 console.log(response);
                 this.$eventBus.$emit('changeComplete');
+                window.alert('오늘의 감정이 수정되었습니다.')
             }).catch(e=>{
                 console.error('수정에 실패했습니다');
             })
@@ -88,6 +89,7 @@
             }).then(response=>{
                 console.log(response.data);
                 this.$eventBus.$emit('changeComplete');
+                window.alert('오늘의 감정이 기록되었습니다.');
             }).catch(e=>{
                 window.alert('입력에 실패했습니다');
             })
