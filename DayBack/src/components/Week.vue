@@ -48,7 +48,6 @@
     for (var i = 0; i < listItems.length; i++) {
       if (isElementInViewport(listItems[i])) {
         listItems[i].classList.add("in-view");
-        console.log('in-view');
       }
     }
   }
@@ -89,21 +88,23 @@
       padding-left: 0
       width: 2px
       margin: 0 auto
-      background: lightcoral
+      background: #FFBAC3
 
     li
       padding-left: 30px
       min-width: 200px
       width: 380px
-      postion: relative
+      position: relative
       visibility: hidden
 
     li::before
       content: ''
       position: absolute
-      left: 395px
-      width: 10px
-      height: 10px
+      left: -9px
+      top: 50%
+      transform: translate(0%, -50%)
+      width: 20px
+      height: 20px
       border-radius: 50%
 
     .happy::before
@@ -117,20 +118,6 @@
       
     .hungry::before
       background: #2CD8D5
-
-    // 카드에 화살표 붙이는 부분
-    //.md-card
-      position: relative
-
-    //.md-card::before
-      content: ''
-      width: 0
-      height: 0
-      border-top: 10px solid transparent
-      border-bottom: 10px solid transparent
-      border-right: 20px solid lightcoral
-      position: absolute
-      left: -8px
 
     li:nth-child(odd) .md-card
       left: -410px

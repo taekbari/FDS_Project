@@ -158,8 +158,9 @@
 
 body #member 
   padding-top: 60px
-  background-image: linear-gradient(65deg, #FFBAC3 0%, #C5C1FF 56%, #2CD8D5 100%)
+  background: linear-gradient(65deg, #FFBAC3 0%, #C5C1FF 56%, #2CD8D5 100%)
 *, *::before, *::after
     box-sizing: border-box
-
+.flex-wrapper
+  padding-bottom: 60p
 </style>

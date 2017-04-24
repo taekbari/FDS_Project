@@ -77,7 +77,7 @@ import axios from 'axios';
           })
           .then(response => {
             console.log(response);
-            window.alert('수정이 완료되었습니다!');
+            window.alert('오늘의 감정이 수정되었습니다.')
             this.component_selected = '';
             this.$eventBus.$emit('changeComplete');
           })
@@ -93,7 +93,7 @@ import axios from 'axios';
             }
           })
           .then(response => {
-            window.alert('오늘의 감정이 기록되었어요!')
+            window.alert('오늘의 감정이 기록되었습니다.');
             this.$eventBus.$emit('changeComplete');
             console.log(response);
           })              
