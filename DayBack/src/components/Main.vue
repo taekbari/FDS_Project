@@ -80,7 +80,7 @@ export default {
     fetchDailyAndWeeklyEmojis() {
       // axios 통신 호출
       // 사용자 정보 가져오기
-      axios.get ('https://dayback.hcatpr.com/user/', {
+      axios.get ('https://dayback.hcatpr.com/api/user/', {
         headers: {
           'Authorization': 'Token ' + this.$store.state.key
         }
@@ -95,7 +95,7 @@ export default {
       });
 
       // 글 목록 가져오기
-      axios.get('https://dayback.hcatpr.com/post/', {
+      axios.get('https://dayback.hcatpr.com/api/post/', {
         headers: {
           'Authorization': 'Token ' + this.$store.state.key
         }

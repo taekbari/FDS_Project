@@ -35,7 +35,7 @@ export default {
       this.$emit('changeDailyCard')
     },
     deleteDaily () {
-      axios.delete('https://dayback.hcatpr.com/post/' + this.todayItem.id + '/', {
+      axios.delete('https://dayback.hcatpr.com/api/post/' + this.todayItem.id + '/', {
         headers: {
           'Authorization': 'Token ' + this.$store.state.key
         }

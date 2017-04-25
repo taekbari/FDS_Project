@@ -76,7 +76,7 @@ export default {
       }
 
       if (this.isUpdate) {
-        axios.put('https://dayback.hcatpr.com/post/' + this.todayItem.id + '/', this.user_input, {
+        axios.put('https://dayback.hcatpr.com/api/post/' + this.todayItem.id + '/', this.user_input, {
           headers: {
             'Authorization': 'Token ' + this.$store.state.key
           }
@@ -90,7 +90,7 @@ export default {
         })
       }
       else {
-        axios.post('https://dayback.hcatpr.com/post/', this.user_input, {
+        axios.post('https://dayback.hcatpr.com/api/post/', this.user_input, {
           headers: {
             'Authorization': 'Token ' + this.$store.state.key
           }

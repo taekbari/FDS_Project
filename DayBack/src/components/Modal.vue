@@ -134,7 +134,7 @@ export default {
       }
 
       var _this = this;
-      axios.post('https://dayback.hcatpr.com/signup/', {
+      axios.post('https://dayback.hcatpr.com/api/signup/', {
         // 화면에서 넣는 data 형식 POST 하기
         email: this.signup.email,
         password: this.signup.password,
@@ -168,7 +168,7 @@ export default {
         return;
       }
 
-      axios.post('https://dayback.hcatpr.com/login/', {
+      axios.post('https://dayback.hcatpr.com/api/login/', {
         email: this.signin.email,
         password: this.signin.password
       })
@@ -178,7 +178,7 @@ export default {
           console.log('_this.key', _this.key);
           console.log(response.status);
         // 사용자 정보를 가져온다
-          axios.get('https://dayback.hcatpr.com/user/', {
+          axios.get('https://dayback.hcatpr.com/api/user/', {
             headers: {
               'Authorization': 'Token ' + _this.key
             },
