@@ -15,7 +15,7 @@
             class="close-button">x</a>
           <h2 class="title is-2">{{signin.title}}</h2>
           <!--input form으로 뺄 수 있는 부분-->
-            <form mothod="post" class="form-signin">
+            <form method="post" class="form-signin">
               <fieldset>
                 <input class="login" required type="text" name="email"
                 v-model="signin.email"
@@ -39,7 +39,7 @@
               <p class="login-info">{{signin.loginInfo}}</p>
               <div class="social-buttons">
                 <a href="#" class="social-google"
-                @click.prevent="googleLogin"
+                @click=""
                 ><span>G</span></a>
                 <a href="#" class="social-facebook"
                 @click=""
@@ -54,21 +54,21 @@
             @click="closeModal"
             class="close-button">x</a>
           <h2 class="title is-2">{{signup.title}}</h2>
-          <form mothod="post" class="form-signin">
+          <form method="post" class="form-signin">
             <fieldset>
-              <input class="login" type="textarea" name="username"
+              <input class="login" required type="textarea" name="username"
                 v-model="signup.nickname" maxlength="10"
                 id="username" placeholder="닉네임">
               <label for="login-id"></label>
-              <input class="login" type="text" name="email"
+              <input class="login" required type="email" name="email"
                 v-model="signup.email"
                 id="email" placeholder="이메일">
               <label for="login-id"></label>
-              <input class="login" type="password" name="password"
+              <input class="login" required type="password" name="password"
                v-model="signup.password"
                id="password" placeholder="비밀번호">
               <label for="login-id"></label>
-              <input class="login" type="password" name="password"
+              <input class="login" required type="password" name="password"
                v-model="signup.passwordCheck"
                id="passwordCheck" placeholder="비밀번호 재확인">
               <label for="login-id"></label>
@@ -86,7 +86,6 @@
 
 <script>
 import axios from 'axios';
-import firebaseService from '../service/firebaseService.js';
 
 export default {
   data () {
@@ -118,11 +117,24 @@ export default {
       this.show = !this.show;
     },
     signUp: function(e) {
-      // 기본 이벤트(submit) 막음
-      e.preventDefault();
+      // 입력 값이 모두 입력되었을 경우 기본 이벤트(submit) 막음
+      if (this.signup.nickname !== '' && this.signup.email !== '' &&
+          this.signup.password !== '' && this.signup.passwordCheck !== '') {
+        e.preventDefault();
+        // 입력한 비밀번호와 비밀번호 확인 값이 맞는지 체크
+        if (this.signup.password !== this.signup.passwordCheck) {
+          window.alert('비밀번호 틀렸습니다.');
+          this.signup.password = '';
+          this.signup.passwordCheck = '';
+          return;
+        }
+      }
+      else {
+        return;
+      }
+
       var _this = this;
       axios.post('https://dayback.hcatpr.com/signup/', {
-      // axios.post('http://localhost:3000/users', {
         // 화면에서 넣는 data 형식 POST 하기
         email: this.signup.email,
         password: this.signup.password,
@@ -130,25 +142,35 @@ export default {
       })
       .then(response => {
         // 서버 통신 성공시
-        console.log(response)
-        console.log("성공")
         window.alert('가입에 성공했습니다. 이제 로그인 해보세요! :-)');
+        _this.signup.nickname = '';
+        _this.signup.email = '';
+        _this.signup.password = '';
+        _this.signup.passwordCheck = '';
         // 가입하면 다시 로그인 페이지로 돌아가기
         _this.flipModal();
       })
-      .catch((error) => {
-        window.alert('가입한 내용을 다시 한 번 확인해 주세요.');
-        console.log(error)
+      .catch(error => {
+        if (error.response.data.email) {
+          window.alert('이미 가입한 이메일입니다.');
+        }
+        else {
+          window.alert('가입한 내용을 다시 한 번 확인해 주세요.');
+        }
       })
     },
     logIn: function(e) {
-      e.preventDefault();
-      // this.$router.push('/service');
+      // 입력 값이 모두 입력되었을 경우 기본 이벤트(submit) 막음
+      if (this.signin.email !== '' && this.signin.password !== '') {
+        e.preventDefault();
+      }
+      else {
+        return;
+      }
+
       axios.post('https://dayback.hcatpr.com/login/', {
-        // results: {
-          email: this.signin.email,
-          password: this.signin.password
-        // }
+        email: this.signin.email,
+        password: this.signin.password
       })
       .then(response => {
           var _this = response.data;
@@ -168,25 +190,15 @@ export default {
           })
           .then(response => {
             // 요청 후 처리
-            console.log(response)
-            console.log("성공")
             // user 배열에 하나들어가기 때문에 0번으로 출력한다
             window.alert(response.data.results[0].nickname+ '님이 로그인 하셨습니다.');
             this.$store.state.key = _this.key;
             this.$router.push({path: './service'})
         })
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(error => {
         window.alert('이메일 주소나 비밀번호에 문제가 있어요!');
       })
-    },
-    googleLogin() {
-      firebaseService.googleLogin().then(user => {
-          this.$store.userInfo = user;
-          this.closeModal();
-          this.$router.push('/service');
-        });
     }
   }
 }

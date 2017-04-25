@@ -29,7 +29,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style scoped lang="sass">
 
 ul
   padding: 0

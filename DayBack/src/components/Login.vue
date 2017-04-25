@@ -39,8 +39,4 @@ export default {
 </script>
 
 <style lang="sass">
-
-// .login
-//   margin: 1rem
-
 </style>

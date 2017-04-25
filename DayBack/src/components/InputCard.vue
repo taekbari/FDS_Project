@@ -7,7 +7,7 @@
           <div class="md-subhead">Dayback</div>
         </md-card-header>
         <form novalidate @submit.stop.prevent="submit">
-          <md-input-container class="input-area">
+          <div class="input-area">
             <md-input-container>
               <label>How are you doing?</label>
               <md-textarea maxlength="100" v-model="user_input.content"></md-textarea>
@@ -22,7 +22,7 @@
               <a href="#" class="hungry" @click.prevent="selectEmoji(1)"
                  :class="{'active' : user_input.mood === 1}"><img src="../assets/img/hungry.png" alt=""></a>
             </div>
-          </md-input-container>
+          </div>
         </form>
 
         <md-card-actions>
@@ -34,69 +34,78 @@
 </template>
 
 <script>
+import axios from 'axios';
 
-  import axios from 'axios';
-
-  export default {
-    name: 'input-card',
-    props:['todayItem', 'authorID', 'isUpdate'],
-    data () {
-      return {
-        user_input: {
-          author: this.authorID,
-          content: '',
-          mood: ''
-        },
-      }
-    },
-      // 수정시 입력 카드로 돌아갈 때 그 인풋창에 입력값 자체가 계속 넣어져 있는 것
-    mounted () {
-        console.log('input card : ', this.todayItem);
-        if (this.todayItem && this.todayItem.content){
-            this.user_input.content = this.todayItem.content;
-        }
-        if (this.todayItem && this.todayItem.mood){
-            this.user_input.mood = this.todayItem.mood;
-        }
-    },
-    methods: {
-      selectEmoji(emoji) {
-        this.user_input.mood = emoji;
-        console.log(emoji);
+export default {
+  name: 'input-card',
+  props:['todayItem', 'authorID', 'isUpdate'],
+  data () {
+    return {
+      user_input: {
+        author: this.authorID,
+        content: '',
+        mood: ''
       },
-      createEmoji() {
-          // 입력된 값이 없을 때 기본값 넣는 것 처리 필요
-        this.user_input.author = this.authorID;
+    }
+  },
+  // 수정시 입력 카드로 돌아갈 때 그 인풋창에 입력값 자체가 계속 넣어져 있는 것
+  mounted () {
+    console.log('user_input content : ', this.user_input.content);
+    console.log('user_input mood : ', this.user_input.mood);
+    console.log('todayItem content : ', this.todayItem.content);
+    console.log('todayItem mood : ', this.todayItem.mood);
 
-        if (this.isUpdate) {
-            axios.put('https://dayback.hcatpr.com/post/'+this.todayItem.id+'/', this.user_input, {
-                headers: {
-                    'Authorization': 'Token ' + this.$store.state.key
-                }
-            }).then(response=>{
-                console.log(response);
-                this.$eventBus.$emit('changeComplete');
-                window.alert('오늘의 감정이 수정되었습니다.')
-            }).catch(e=>{
-                console.error('수정에 실패했습니다');
-            })
-        }
-        else {
-            axios.post('https://dayback.hcatpr.com/post/', this.user_input, {
-                headers: {
-                    'Authorization': 'Token ' + this.$store.state.key
-                }
-            }).then(response=>{
-                console.log(response.data);
-                this.$eventBus.$emit('changeComplete');
-                window.alert('오늘의 감정이 기록되었습니다.');
-            }).catch(e=>{
-                window.alert('입력에 실패했습니다');
-            })
-        }
+    if (this.todayItem && this.todayItem.content){
+        this.user_input.content = this.todayItem.content;
+    }
+    if (this.todayItem && this.todayItem.mood){
+        this.user_input.mood = this.todayItem.mood;
+    }
+  },
+  methods: {
+    selectEmoji(emoji) {
+      this.user_input.mood = emoji;
+    },
+    createEmoji() {
+      // 입력된 값이 없을 때 기본값 넣는 것 처리 필요
+      this.user_input.author = this.authorID;
+
+      if (this.user_input.mood === '') {
+        window.alert('이모지를 선택하세요.');
+        return;
+      }
+
+      if (this.isUpdate) {
+        axios.put('https://dayback.hcatpr.com/post/' + this.todayItem.id + '/', this.user_input, {
+          headers: {
+            'Authorization': 'Token ' + this.$store.state.key
+          }
+        })
+        .then (response => {
+          this.$eventBus.$emit('changeComplete');
+          window.alert('오늘의 감정이 수정되었습니다.')
+        })
+        .catch (e => {
+          console.error('수정에 실패했습니다');
+        })
+      }
+      else {
+        axios.post('https://dayback.hcatpr.com/post/', this.user_input, {
+          headers: {
+            'Authorization': 'Token ' + this.$store.state.key
+          }
+        })
+        .then(response => {
+          this.$eventBus.$emit('changeComplete');
+          window.alert('오늘의 감정이 기록되었습니다.');
+        })
+        .catch(e => {
+          window.alert('입력에 실패했습니다');
+        });
       }
     }
   }
+}
 </script>
 
 <style lang="sass" scoped rel="stylesheet/sass">
